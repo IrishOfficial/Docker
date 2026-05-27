@@ -21,7 +21,7 @@ if [ "${UPDATE}" == "true" ] || [ "${UPDATE}" == "1" ]; then
 fi
 
 # Replace Startup Variables
-MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g' -e 's/\"/\\\"/g')`
+MODIFIED_STARTUP=$(eval echo "$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g' -e 's/\"/\\\"/g')")
 
 # OxideMod has been replaced with uMod
 if [ "${OXIDE}" == "true" ] || [ "${OXIDE}" == "1" ]; then
@@ -40,5 +40,6 @@ mkdir -p /home/container/tmp
 export DOTNET_BUNDLE_EXTRACT_BASE_DIR="/home/container/tmp"
 
 echo "Starting Rust Server"
+echo "STARTUP CMD: $MODIFIED_STARTUP"
 # Run the Server
 /ProcessWrapper $MODIFIED_STARTUP
