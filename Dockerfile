@@ -20,6 +20,9 @@ RUN dpkg --add-architecture i386 \
         libicu70 \
         libc6 \
         libgcc-s1 \
+        libssl-dev \
+        openssl \
+        libssl3 \
     && useradd -d /home/container -m container
 
 USER container
