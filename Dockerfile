@@ -14,15 +14,18 @@ RUN dpkg --add-architecture i386 \
         libsdl2-2.0-0 \
         unzip \
         curl \
+        wget \
         iproute2 \
         libgdiplus \
         ca-certificates \
         libicu70 \
         libc6 \
         libgcc-s1 \
-        libssl-dev \
-        openssl \
         libssl3 \
+        openssl \
+    && wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
+    && dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
+    && rm libssl1.1_1.1.1f-1ubuntu2_amd64.deb \
     && useradd -d /home/container -m container
 
 USER container
